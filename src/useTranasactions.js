@@ -16,7 +16,6 @@ const useTransition = (title) => {
     0
   );
   const categories = title === "Income" ? incomeCategories : expenseCategories;
-  console.log({ transitionPerType, total, categories });
 
   transitionPerType.forEach((t) => {
     const category = categories.find((c) => c.type === t.category);
@@ -25,6 +24,7 @@ const useTransition = (title) => {
 
   //for chart
   const filteredCategories = categories.filter((c) => c.amount > 0);
+  console.log(filteredCategories.map((c) => c.amount));
   const chartData = {
     datasets: [
       {

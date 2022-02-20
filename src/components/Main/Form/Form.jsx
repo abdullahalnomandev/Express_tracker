@@ -1,5 +1,6 @@
 import { Button, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import { useSpeechContext } from '@speechly/react-client';
+import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { expenseCategories, incomeCategories } from '../../../constants/categories';
 import { useContextProvider } from '../../../context/context';
@@ -21,15 +22,25 @@ const Form = () => {
         addTransition(newFormData)
         console.log(newFormData);
     }
-
     const classes = useStyles()
-
     const selectedCategories = formDate.type==='Income' ?incomeCategories: expenseCategories;
+    const {segment}=useSpeechContext();
+
+    useEffect(()=> {
+        if(segment){
+            if(segment.intent.intent ==="add_expense"){
+                setFormDate({...formDate,type:'Expense'})
+            }
+        }
+        console.log('hello',formDate);
+    },[segment,formDate])
+
     return (
        <Grid container spacing={2}>
            <Grid item xs={12}>
                <Typography align='center' variant='subtitle2' gutterBottom >
-                    ...
+                    {segment &&   segment.words.map((w)=> w.value).join(" ")}
+                        
                </Typography>
            </Grid>
            <Grid item xs={6}>

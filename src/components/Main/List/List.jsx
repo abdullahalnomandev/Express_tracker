@@ -9,12 +9,12 @@ const List = () => {
 
 
     return (
-        <MList dense={false} className={classes.list}>
+        <MList dense={false} className={classes.list} >
             {
                 transition.map((tr)=> (
-                    <Slide direction='down' in mountOnEnter unmountOnExit key={tr.id}>
-                        <ListItem>
-                            <ListItemAvatar >
+                    <Slide direction='down' in mountOnEnter unmountOnExit key={tr.id} fullWidth>
+                        <ListItem  >
+                            <ListItemAvatar  >
                                 <Avatar  >
                                 <MoneyOff className={tr.type === 'Income'? classes.avatarIncome:classes.avatarExpense}/>
                                 </Avatar>

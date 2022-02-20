@@ -1,4 +1,5 @@
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
+import { ErrorPanel, PushToTalkButton, PushToTalkButtonContainer } from "@speechly/react-ui";
 import React from "react";
 import Details from "./components/Details/Details";
 import Main from "./components/Main/Main";
@@ -7,7 +8,7 @@ const App = () => {
   const classes =useStyle()
 
   return (
-
+<>
       <Grid
       className={classes.grid}
         container
@@ -26,7 +27,15 @@ const App = () => {
           <Details  title='Expense'/>
     
         </Grid>
+    
       </Grid>
+      <Box  >
+      <PushToTalkButtonContainer mt={6} style={{width:'70px'}}>
+          <PushToTalkButton />
+          <ErrorPanel />
+        </PushToTalkButtonContainer>
+      </Box>
+        </>
  
 
   );
